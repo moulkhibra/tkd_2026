@@ -1,0 +1,330 @@
+/* شاشات العرض الكبيرة */
+.display-screen {
+    background: #000;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.screen {
+    display: none;
+    height: 100vh;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* شاشة البطولة */
+.display-header {
+    background: linear-gradient(135deg, #e53e3e, #dd6b20);
+    padding: 2rem;
+    text-align: center;
+}
+
+.tournament-info h1 {
+    font-size: 3rem;
+    margin: 0 0 1rem 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.tournament-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.current-time {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* الحلبات */
+.rings-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.ring-card {
+    background: #1a202c;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 3px solid #e53e3e;
+}
+
+.ring-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.ring-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e53e3e;
+}
+
+.ring-status {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.status-active {
+    background: #38a169;
+    color: white;
+}
+
+.status-inactive {
+    background: #718096;
+    color: white;
+}
+
+.current-match {
+    text-align: center;
+}
+
+.match-category {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+}
+
+.match-competitors {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.competitor-large {
+    text-align: center;
+    flex: 1;
+}
+
+.competitor-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.competitor-score {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #e53e3e;
+}
+
+.vs-large {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0 2rem;
+}
+
+.match-timer-large {
+    font-size: 2rem;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    margin-top: 1rem;
+    color: #e53e3e;
+}
+
+/* شاشة المباراة */
+.match-display {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.match-header {
+    background: linear-gradient(135deg, #e53e3e, #dd6b20);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.match-info h2 {
+    font-size: 2.5rem;
+    margin: 0 0 1rem 0;
+}
+
+.match-meta {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.2rem;
+}
+
+.match-timer {
+    text-align: center;
+}
+
+.match-timer span {
+    font-size: 4rem;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    display: block;
+}
+
+.round-info {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+/* المتسابقون في شاشة العرض */
+.competitors-display {
+    display: flex;
+    flex: 1;
+    background: #1a202c;
+}
+
+.competitor {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+}
+
+.competitor-left {
+    border-right: 3px solid #2d3748;
+}
+
+.competitor-right {
+    border-left: 3px solid #2d3748;
+}
+
+.competitor.active {
+    background: #2d3748;
+}
+
+.competitor.winner::after {
+    content: '👑';
+    position: absolute;
+    top: 2rem;
+    font-size: 3rem;
+}
+
+.competitor-name-large {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.competitor-club-large {
+    font-size: 1.5rem;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+}
+
+.competitor-score-large {
+    font-size: 6rem;
+    font-weight: bold;
+    color: #e53e3e;
+    margin: 2rem 0;
+}
+
+.penalties-large {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.penalty-large {
+    background: #dd6b20;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* المباريات القادمة */
+.upcoming-matches {
+    background: #1a202c;
+    padding: 2rem;
+}
+
+.upcoming-matches h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.matches-scroll {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+}
+
+.upcoming-match {
+    background: #2d3748;
+    padding: 1.5rem;
+    border-radius: 8px;
+    min-width: 300px;
+    border-left: 4px solid #e53e3e;
+}
+
+.upcoming-match h4 {
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+}
+
+.match-time {
+    color: #e53e3e;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.match-athletes {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* الرسوم المتحركة */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes flash {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.flash {
+    animation: flash 1s infinite;
+}
+
+/* التجاوب للشاشات الكبيرة */
+@media (min-width: 1920px) {
+    .tournament-info h1 {
+        font-size: 4rem;
+    }
+    
+    .competitor-name-large {
+        font-size: 3rem;
+    }
+    
+    .competitor-score-large {
+        font-size: 8rem;
+    }
+}

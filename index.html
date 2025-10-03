@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة الإدارة - نظام التايكواندو</title>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- الشريط الجانبي -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-fist-raised"></i>
+                <span>لوحة الإدارة</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-tab="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>لوحة التحكم</span>
+                </a>
+                <a href="#tournaments" class="nav-item" data-tab="tournaments">
+                    <i class="fas fa-trophy"></i>
+                    <span>إدارة البطولات</span>
+                </a>
+                <a href="#athletes" class="nav-item" data-tab="athletes">
+                    <i class="fas fa-users"></i>
+                    <span>إدارة المتسابقين</span>
+                </a>
+                <a href="#matches" class="nav-item" data-tab="matches">
+                    <i class="fas fa-fist-raised"></i>
+                    <span>إدارة المباريات</span>
+                </a>
+                <a href="#referees" class="nav-item" data-tab="referees">
+                    <i class="fas fa-whistle"></i>
+                    <span>إدارة الحكام</span>
+                </a>
+                <a href="#reports" class="nav-item" data-tab="reports">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>التقارير</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- المحتوى الرئيسي -->
+        <main class="main-content">
+            <!-- شريط العنوان -->
+            <header class="content-header">
+                <div class="header-title">
+                    <h1 id="pageTitle">لوحة التحكم</h1>
+                </div>
+                <div class="header-actions">
+                    <div class="user-info">
+                        <span id="userName">مدير النظام</span>
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <button class="btn-logout" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        تسجيل الخروج
+                    </button>
+                </div>
+            </header>
+
+            <!-- محتوى التبويبات -->
+            <div class="tab-content">
+                <!-- تبويب لوحة التحكم -->
+                <div id="dashboard" class="tab-pane active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalTournaments">0</h3>
+                                <p>البطولات</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalAthletes">0</h3>
+                                <p>المتسابقين</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-fist-raised"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalMatches">0</h3>
+                                <p>المباريات</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-whistle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalReferees">0</h3>
+                                <p>الحكام</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- البطولات النشطة -->
+                    <div class="section">
+                        <h2>البطولات النشطة</h2>
+                        <div id="activeTournaments" class="tournaments-grid">
+                            <!-- سيتم تعبئتها بالبيانات -->
+                        </div>
+                    </div>
+
+                    <!-- المباريات القادمة -->
+                    <div class="section">
+                        <h2>المباريات القادمة</h2>
+                        <div id="upcomingMatches" class="matches-list">
+                            <!-- سيتم تعبئتها بالبيانات -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- تبويب إدارة البطولات -->
+                <div id="tournaments" class="tab-pane">
+                    <div class="section-header">
+                        <h2>إدارة البطولات</h2>
+                        <button class="btn-primary" onclick="showTournamentForm()">
+                            <i class="fas fa-plus"></i>
+                            إضافة بطولة
+                        </button>
+                    </div>
+                    
+                    <div class="filters">
+                        <select id="tournamentStatusFilter" onchange="loadTournaments()">
+                            <option value="">جميع الحالات</option>
+                            <option value="draft">مسودة</option>
+                            <option value="published">منشورة</option>
+                            <option value="ongoing">جارية</option>
+                            <option value="completed">منتهية</option>
+                        </select>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>اسم البطولة</th>
+                                    <th>التاريخ</th>
+                                    <th>المكان</th>
+                                    <th>الحالة</th>
+                                    <th>عدد المتسابقين</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tournamentsTable">
+                                <!-- سيتم تعبئتها بالبيانات -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- تبويب إدارة المتسابقين -->
+                <div id="athletes" class="tab-pane">
+                    <div class="section-header">
+                        <h2>إدارة المتسابقين</h2>
+                        <button class="btn-primary" onclick="showAthleteForm()">
+                            <i class="fas fa-plus"></i>
+                            إضافة متسابق
+                        </button>
+                    </div>
+
+                    <div class="filters">
+                        <input type="text" id="athleteSearch" placeholder="بحث بالاسم أو النادي..." onkeyup="searchAthletes()">
+                        <select id="beltFilter" onchange="loadAthletes()">
+                            <option value="">جميع الأحزمة</option>
+                            <!-- سيتم تعبئتها بالبيانات -->
+                        </select>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>الصورة</th>
+                                    <th>الاسم</th>
+                                    <th>النادي</th>
+                                    <th>الحزام</th>
+                                    <th>الوزن</th>
+                                    <th>التسجيلات</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="athletesTable">
+                                <!-- سيتم تعبئتها بالبيانات -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- تبويب إدارة المباريات -->
+                <div id="matches" class="tab-pane">
+                    <div class="section-header">
+                        <h2>إدارة المباريات</h2>
+                        <button class="btn-primary" onclick="showMatchForm()">
+                            <i class="fas fa-plus"></i>
+                            إضافة مباراة
+                        </button>
+                    </div>
+
+                    <div class="filters">
+                        <select id="tournamentFilter" onchange="loadMatches()">
+                            <option value="">اختر البطولة</option>
+                            <!-- سيتم تعبئتها بالبيانات -->
+                        </select>
+                        <select id="matchStatusFilter" onchange="loadMatches()">
+                            <option value="">جميع الحالات</option>
+                            <option value="scheduled">مجدولة</option>
+                            <option value="in_progress">جارية</option>
+                            <option value="completed">منتهية</option>
+                        </select>
+                    </div>
+
+                    <div class="matches-view">
+                        <div class="view-options">
+                            <button class="view-btn active" data-view="list">عرض قائمة</button>
+                            <button class="view-btn" data-view="bracket">عرض Bracket</button>
+                        </div>
+                        
+                        <div id="matchesList" class="matches-container">
+                            <!-- عرض القائمة -->
+                        </div>
+                        
+                        <div id="bracketView" class="bracket-container" style="display: none;">
+                            <!-- عرض Bracket -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- نماذج الإضافة -->
+    <div id="tournamentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('tournamentModal')">&times;</span>
+            <h2 id="tournamentModalTitle">إضافة بطولة جديدة</h2>
+            <form id="tournamentForm">
+                <input type="hidden" id="tournamentId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>اسم البطولة *</label>
+                        <input type="text" id="tournamentName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>المكان *</label>
+                        <input type="text" id="tournamentLocation" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>تاريخ البدء *</label>
+                        <input type="date" id="startDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>تاريخ الانتهاء *</label>
+                        <input type="date" id="endDate" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>وصف البطولة</label>
+                    <textarea id="tournamentDescription" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('tournamentModal')">إلغاء</button>
+                    <button type="submit" class="btn-primary">حفظ البطولة</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets/js/admin.js"></script>
+</body>
+</html>
